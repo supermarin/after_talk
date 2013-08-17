@@ -1,0 +1,15 @@
+%html
+  %head
+    = bootstrap_assets
+  %body
+    - container :fluid do
+      - row do
+        - span9 do
+          %h1 How did it go?
+          %p Please rate the talk so I can improve for the next time. If you think I should never ever speak again, click on the emergency button.
+
+      - row do
+        - span9 do
+          %a.btn.btn-danger STOP TALKING
+          %h2 Comments
+          %textarea#comments
