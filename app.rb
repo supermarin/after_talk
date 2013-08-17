@@ -31,3 +31,9 @@ post '/review' do
   haml :thanks
 end
 
+get '/reviews' do
+  @reviews = DB[:reviews].all
+  puts "Reviews: #{@reviews}"
+  haml :reviews
+end
+
