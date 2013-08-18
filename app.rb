@@ -6,18 +6,13 @@ require 'better_errors'
 require 'sequel'
 
 
+DB = Sequel.sqlite('database.sqlite')
+
 register Sinatra::Twitter::Bootstrap::Assets
 
 configure :development do
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
-end
-
-DB = Sequel.sqlite
-DB.create_table :reviews do
-  primary_key :id
-  String :comments
-  Int :rating
 end
 
 
@@ -33,7 +28,6 @@ end
 
 get '/reviews' do
   @reviews = DB[:reviews].all
-  puts "Reviews: #{@reviews}"
   haml :reviews
 end
 

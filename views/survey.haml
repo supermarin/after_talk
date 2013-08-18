@@ -1,15 +1,31 @@
 %html
   %head
     = bootstrap_assets
+
+    %script{ :type => "text/javascript", :src => "javascripts/bootstrap-slider.js" }
+    %link{ :rel => "stylesheet", :href => "stylesheets/slider.css", :type => "text/css" }
+
+    :javascript
+        $(document).ready(function() {
+          $('.slider').slider({
+            "max": 5,
+            "value": 1
+          });
+        });
   %body
     - container :fluid do
       - row do
-        - span9 do
-          %h1 How did it go?
-          %p Please rate the talk so I can improve for the next time. If you think I should never ever speak again, click on the emergency button.
+        %h1 How did it go?
+        %p Please rate the talk so I can improve for the next time. If you think I should never ever speak again, click on the emergency button.
+
+        %form{ :action => "/review", :method => "post" }
+          %input{ :type => "text", :class => "slider", :name => "rating" }
+          %label{ :for => :comments } Comments
+          %textarea{ :name => :comments }
+
+          %input{:type => "submit", :value => "Send", :class => "btn btn-primary"}
 
       - row do
-        - span9 do
-          %a.btn.btn-danger STOP TALKING
-          %h2 Comments
-          %textarea#comments
+        %h3 Emergency
+        %a.btn.btn-danger{ :href => "http://mneorr.com" } STOP TALKING
+

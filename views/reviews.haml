@@ -1,5 +1,17 @@
-- @reviews.each do |review|
-  - row do
-    - span9 do
-      %p #{ review[:comments] }
+%html
+  %head
+    = bootstrap_assets
+  %body
+    %table.table.table-striped
+      %tr
+        %th
+          Rating
+        %th
+          Comments
+      - @reviews.each do |review|
+        %tr
+          %td
+            %span.rating #{ review[:rating] }
+          %td
+            %p.comments #{ review[:comments] }
 
