@@ -8,24 +8,25 @@
     :javascript
         $(document).ready(function() {
           $('.slider').slider({
+            "min": 1,
             "max": 5,
             "value": 1
           });
         });
   %body
     - container :fluid do
-      - row do
+      - span6 do
+
         %h1 How did it go?
         %p Please rate the talk so I can improve for the next time. If you think I should never ever speak again, click on the emergency button.
 
         %form{ :action => "/review", :method => "post" }
-          %input{ :type => "text", :class => "slider", :name => "rating" }
-          %label{ :for => :comments } Comments
-          %textarea{ :name => :comments }
-
-          %input{:type => "submit", :value => "Send", :class => "btn btn-primary"}
-
-      - row do
-        %h3 Emergency
-        %a.btn.btn-danger{ :href => "http://mneorr.com" } STOP TALKING
+          %h3 Rating
+          %input{ :type => "text", :class => "slider", :name => :rating }
+          - row do
+            %h3 Comments
+            %textarea{ :name => :comments }
+          - row do
+            %input{:type => "submit", :value => "Send", :class => "btn btn-primary"}
+            %a.btn.btn-danger{ :href => "http://mneorr.com" } STOP TALKING
 
