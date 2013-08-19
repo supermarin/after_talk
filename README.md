@@ -18,3 +18,8 @@ But trust me, it works.
 Clone the app, `gem install` and `rake db:create` to create the database.
 You can start the server with `ruby app.rb`.
 
+## Leaving feedback
+
+If you're on the Mac, just tell people to visit `#{your_computer_name}.local`.
+For instance, if computer name is Batman and we're on the same wifi, you can see it as `batman.local`.
+
