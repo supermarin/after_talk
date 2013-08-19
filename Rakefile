@@ -7,6 +7,7 @@ namespace :db do
       primary_key :id
       String :comments
       Int :rating
+      Time :created_at
     end
   end
 end

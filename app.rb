@@ -4,7 +4,6 @@ require 'haml'
 require 'sinatra/twitter-bootstrap'
 require 'better_errors'
 require 'sequel'
-require 'date'
 
 DB = Sequel.sqlite('database.sqlite')
 class Review < Sequel::Model; end
@@ -34,6 +33,10 @@ end
 private
 
 def review_params
-  { :rating => params[:rating], :comments => params[:comments], :created_at => DateTime.now.to_date }
+  if params[:stop]
+    { :rating => -1, :comments => "STOP TALKING! #{params[:comments] || ''}", :created_at => Time.now }
+  else
+    { :rating => params[:rating], :comments => params[:comments], :created_at => Time.now }
+  end
 end
 
