@@ -5,15 +5,17 @@ require 'sinatra/twitter-bootstrap'
 require 'better_errors'
 require 'sequel'
 
-DB = Sequel.sqlite('database.sqlite')
-class Review < Sequel::Model; end
+configure do
+  DB = Sequel.sqlite('database.sqlite')
+  register Sinatra::Twitter::Bootstrap::Assets
+end
 
-register Sinatra::Twitter::Bootstrap::Assets
 configure :development do
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
 end
 
+class Review < Sequel::Model; end
 
 get '/' do
   haml :survey
