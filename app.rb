@@ -4,12 +4,12 @@ require 'haml'
 require 'sinatra/twitter-bootstrap'
 require 'better_errors'
 require 'sequel'
-
+require 'date'
 
 DB = Sequel.sqlite('database.sqlite')
+class Review < Sequel::Model; end
 
 register Sinatra::Twitter::Bootstrap::Assets
-
 configure :development do
   use BetterErrors::Middleware
   BetterErrors.application_root = __dir__
@@ -21,13 +21,19 @@ get '/' do
 end
 
 post '/review' do
-  reviews = DB[:reviews]
-  reviews.insert(:rating => params[:rating], :comments => params[:comments])
+  Review.create(review_params)
   haml :thanks
 end
 
 get '/reviews' do
-  @reviews = DB[:reviews].all
+  @reviews = Review.all
   haml :reviews
+end
+
+
+private
+
+def review_params
+  { :rating => params[:rating], :comments => params[:comments], :created_at => DateTime.now.to_date }
 end
 
