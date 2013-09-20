@@ -23,7 +23,11 @@ end
 
 post '/review' do
   Review.create(review_params)
-  haml :thanks
+  if params[:stop]
+    haml :fu
+  else
+    haml :thanks
+  end
 end
 
 get '/reviews' do
