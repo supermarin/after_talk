@@ -15,8 +15,8 @@ But trust me, it works.
 
 ## Setup
 
-Clone the app, `bundle install` and `rake db:create` to create the database.
-You can start the server with `ruby app.rb -o 0.0.0.0`.
+Clone the app and run `rake bootstrap` to install dependencies and create the database.
+You can start the server with `rake server`.
 
 ## Leaving feedback
 
